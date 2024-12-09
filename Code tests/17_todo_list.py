@@ -55,9 +55,9 @@ def task_completed() -> None:
     for tasks in todo_list:
         print(f'{tasks['name']}')
     while True: 
-        deleted_tasks = input('\n Please input the name of the task you want to complete: ').strip().upper()
+        completed_tasks = input('\n Please input the name of the task you want to complete: ').strip().upper()
         for tasks in todo_list:
-            if tasks["name"] == deleted_tasks:
+            if tasks["name"] == completed_tasks:
                 tasks["completed"] = True
                 print(f'Task {tasks['name']} is completed = {tasks['completed']} ')
                 return
@@ -65,7 +65,18 @@ def task_completed() -> None:
         
 
 def task_deletion():
-    pass
+    print('Please choose the task you want to delete \n')
+
+    for tasks in todo_list:
+        print(f'{tasks['name']}')
+    
+    while True:
+        task_deleted = input('Please input the task name you want to delete.').strip().upper()
+        for tasks in todo_list:
+            if task_deleted == tasks['name']:
+                print(f'\n____ You have removed task {tasks['name']} ___')
+                todo_list.remove
+                return
 
 def exit_todo_pogram():
     pass
@@ -80,6 +91,8 @@ while True:
         view_task()
     elif choice == 3:
         task_completed()
+    elif choice == 4:
+        task_deletion()
     elif choice == 5:
         print('The todo list is now closing down.')
         break
