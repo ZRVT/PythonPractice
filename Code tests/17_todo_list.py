@@ -38,7 +38,7 @@ def add_task(task: str) -> list[dict[str,bool]]:
     print(f'\n You have add the task: {task} to your list.\n')
     return todo_list
 
-def view_task() -> str:
+def view_task() -> None:
     """ Returns all the tasks with a for loop
 
     Returns:
@@ -62,9 +62,11 @@ def task_completed() -> None:
                 print(f'Task {tasks['name']} is completed = {tasks['completed']} ')
                 return
         print('Please provide a valid input')
-        
 
-def task_deletion():
+def task_deletion() -> None:
+    """_summary_
+    This function doesn't require an input and will delete the task the user chooses. 
+    """
     print('Please choose the task you want to delete \n')
 
     for tasks in todo_list:
