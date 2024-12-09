@@ -14,16 +14,17 @@ def user_choice() -> int:
     print('3. Mark task completed.')
     print('4. Delete a tasks.')
     print('5. Exit todo list.\n')
-    choice = int(input('Please make a choice from (1/5): '))
+    
     while True:
         try: 
+            choice = int(input('Please make a choice from (1/5): '))
             if choice in [1,2,3,4,5]:
                 return choice
                 break
             else: 
-                print('Please provide a number from 1 to 5')
+                print('\nPlease provide a number from 1 to 5')
         except ValueError:
-             print('Please provide a number from 1 to 5')
+             print('\nPlease provide a number from 1 to 5')
 
 def add_task(task: str) -> list[dict[str,bool]]:
     """Simple function to add a task to the todo list application. 
@@ -45,7 +46,7 @@ def view_task() -> None:
         str: prints our the task and the status of the tasks. 
     """
     for tasks in todo_list:
-        print(f'Task = {tasks['name']} --- Completed = {tasks['completed']}')
+        print(f'Task = {tasks["name"]} --- Completed = {tasks["completed"]}')
 
 def task_completed() -> None:
     """This function marks a tasks as completed once it is done and over with. 
@@ -55,11 +56,11 @@ def task_completed() -> None:
     for tasks in todo_list:
         print(f'{tasks['name']}')
     while True: 
-        completed_tasks = input('\n Please input the name of the task you want to complete: ').strip().upper()
+        completed_tasks = input('\n Please input the name of the task you want to complete: ').strip().lower()
         for tasks in todo_list:
             if tasks["name"] == completed_tasks:
                 tasks["completed"] = True
-                print(f'Task {tasks['name']} is completed = {tasks['completed']} ')
+                print(f'Task {tasks["name"]} is completed = {tasks["completed"]} ')
                 return
         print('Please provide a valid input')
 
@@ -70,17 +71,17 @@ def task_deletion() -> None:
     print('Please choose the task you want to delete \n')
 
     for tasks in todo_list:
-        print(f'{tasks['name']}')
+        print(f'{tasks["name"]}')
     
     while True:
-        task_deleted = input('Please input the task name you want to delete.').strip().upper()
+        task_deleted = input('Please input the task name you want to delete.').strip().lower()
         for tasks in todo_list:
             if task_deleted == tasks['name']:
-                print(f'\n____ You have removed task {tasks['name']} ___')
-                todo_list.remove
+                print(f'\n____ You have removed task {tasks["name"]} ___')
+                todo_list.remove(tasks)
                 return
 
-def exit_todo_pogram():
+def export_todo_pogram():
     pass
 
 todo_list = []
@@ -88,7 +89,7 @@ todo_list = []
 while True:
     choice = user_choice()
     if choice == 1:
-        todo_list = add_task(input('Input your task here: ').strip().upper())
+        todo_list = add_task(input('Input your task here: ').strip().lower())
     elif choice == 2: 
         view_task()
     elif choice == 3:
