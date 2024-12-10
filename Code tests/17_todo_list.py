@@ -1,3 +1,7 @@
+import csv
+import json
+
+
 def user_choice() -> int:
     """ Function that allow the user to input their choice and returns a integer value. 
 
@@ -13,18 +17,19 @@ def user_choice() -> int:
     print('2. View all tasks')
     print('3. Mark task completed.')
     print('4. Delete a tasks.')
-    print('5. Exit todo list.\n')
+    print('5. Export the todo list.')
+    print('6. Exit the todo list application. \n')
     
     while True:
         try: 
-            choice = int(input('Please make a choice from (1/5): '))
-            if choice in [1,2,3,4,5]:
+            choice = int(input('Please make a choice from (1/6): '))
+            if choice in [1,2,3,4,5,6]:
                 return choice
                 break
             else: 
-                print('\nPlease provide a number from 1 to 5')
+                print('\nPlease provide a number from 1 to 6')
         except ValueError:
-             print('\nPlease provide a number from 1 to 5')
+             print('\nPlease provide a number from 1 to 6')
 
 def add_task(task: str) -> list[dict[str,bool]]:
     """Simple function to add a task to the todo list application. 
@@ -81,8 +86,45 @@ def task_deletion() -> None:
                 todo_list.remove(tasks)
                 return
 
-def export_todo_pogram():
-    pass
+def export_todo_pogram() -> None:
+    while True: 
+        export_choice = input('Please choose between export options (csv,json,text): ')
+        if export_choice in ("csv","json","text"):
+            file_name = input("Enter the filename to export (e.g., todo_list.txt): ").strip()
+            break
+        else:
+            print('Please provide a valid export choice. \n')
+    
+    #export to CSV section
+    if export_choice == "csv":    
+        try:
+            with open(file_name, 'w', newline='') as file:
+                writer = csv.DictWriter(file, fieldnames=["name", "completed"])
+                writer.writeheader()
+                writer.writerows(todo_list)
+                print(f"\nTodo list successfully exported to {file_name}")
+        except Exception as e:
+            print(f"An error occurred while exporting: {e}")
+
+    #export to JSON section.
+    elif export_choice == "json":
+        try:
+            with open(file_name, 'w') as json_file:
+                json.dump(todo_list, json_file, indent=4)
+            print(f"\nTodo list successfully exported to {file_name}")
+        except Exception as e:
+            print(f"An error occurred while exporting to JSON: {e}")
+            print("json")
+
+    #export to TEXT file section. 
+    elif export_choice == "text":    
+        try:
+            with open(file_name, 'w') as file:
+                for task in todo_list:
+                    file.write(f"Task: {task['name']}, Completed: {task['completed']}\n")
+            print(f"\nTodo list successfully exported to {file_name}")
+        except Exception as e:
+            print(f"An error occurred while exporting: {e}")
 
 todo_list = []
 
@@ -97,5 +139,7 @@ while True:
     elif choice == 4:
         task_deletion()
     elif choice == 5:
+        export_todo_pogram()
+    elif choice == 6:
         print('The todo list is now closing down.')
         break
