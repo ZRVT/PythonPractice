@@ -87,6 +87,14 @@ def task_deletion() -> None:
                 return
 
 def export_todo_pogram() -> None:
+    """_summary_
+    This function helps with exporting the todo list to a file allowing the user to export the data they need.
+    the export functions exports with 3 options.\n
+    
+    1. CSV
+    2. JSON
+    3. Text
+    """
     while True: 
         export_choice = input('Please choose between export options (csv,json,text): ')
         if export_choice in ("csv","json","text"):
