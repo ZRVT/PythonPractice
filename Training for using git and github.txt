@@ -10,3 +10,22 @@ To push changes to git i need to do the following.
 This will pusht he change to the following repository: https://github.com/ZRVT/PythonPractice
 which will have all the data i want to learn about there. 
 
+Next i will be practicing doing pull request and merging these in the main branch
+This will allow me to better understand how this process goes and further my overal knowledge of programming.
+
+To branch from main first i have to do the following. 
+
+1. Fork from main
+git clone https://github.com/ZRVT/PythonPractice
+
+2.  Create a new branch
+git checkout -b feature/new-awesome-feature
+
+3. Add and commit changes in git
+git add .
+git commit -m "Add new awesome feature"
+
+4. Push the branch to github
+git push -u origin feature/new-awesome-feature
+
+5. Open the pull request on Github and await review
