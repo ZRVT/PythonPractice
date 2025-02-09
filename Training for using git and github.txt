@@ -1,0 +1,12 @@
+Here i am adding my training and what i am doing to learn more abiout git and github. 
+
+I am pushing my learnings to github every chance i get so i familiarize myself with this all. 
+
+To push changes to git i need to do the following. 
+- git add . 
+- git commit -m "what i am commiting"
+- git push -u origin main
+
+This will pusht he change to the following repository: https://github.com/ZRVT/PythonPractice
+which will have all the data i want to learn about there. 
+
