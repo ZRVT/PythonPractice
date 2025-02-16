@@ -15,7 +15,7 @@ def find_common_elements(list1, list2):
         
         print(i)
 
-    print(listMatching)
+    print(listMatching) 
     return listMatching
 
 list1 = [1, 2, 3, 4, 5]
