@@ -11,7 +11,10 @@ class Tasks:
         self.id = str(uuid.uuid4())
         self.name = name
         self.completed = False
-        self.listId = listId
+        if listId is None:
+            self.listId = 1
+        else:
+            self.listId = listId
     
     def __post_init__(self):
         # This function gives error if task name not added
